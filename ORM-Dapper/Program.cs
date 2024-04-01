@@ -35,6 +35,29 @@ namespace ORM_Dapper
                 Console.WriteLine();
             }
 
+
+
+            //Create and read from the products table
+
+            //1 pass in the conn to the DapperProductRepository
+            var productRepo = new DapperProductRepository(conn);
+
+            //add a new product
+            productRepo.CreateProduct("Sharp TV 32inch", 600.00, 5);
+
+            //2 call the GetAllProducts method
+            var products = productRepo.GetAllProducts();
+
+            //read in all the products
+            foreach (var product in products)
+            {
+                Console.WriteLine(product.ProductID);
+                Console.WriteLine(product.Name);
+                Console.WriteLine(product.Price);
+                Console.WriteLine(product.CategoryID);
+                Console.WriteLine();
+            }
+
         }
     }
 }
