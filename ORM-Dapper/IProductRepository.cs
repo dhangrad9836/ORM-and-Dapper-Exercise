@@ -1,12 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ORM_Dapper
+﻿namespace ORM_Dapper
 {
-    internal interface IProductRepository
+    public interface IProductRepository
     {
+        //this is an IEnumerable of Product type from our Product class we created
+        //for a collection of Products
+        IEnumerable<Product> GetAllProducts();
+
+        //create a stub method b/c interface
+        void CreateProduct(string name, double price, int categoryID);
+
     }
 }
