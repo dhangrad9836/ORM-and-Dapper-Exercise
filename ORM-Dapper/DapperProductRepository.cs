@@ -6,7 +6,7 @@ namespace ORM_Dapper
     public class DapperProductRepository : IProductRepository
     {
 
-        //add connection to database
+        //add connection to database ie: inversion of control
         private readonly IDbConnection _conn;
 
         //our constructor with the database connection
@@ -28,6 +28,31 @@ namespace ORM_Dapper
             _conn.Execute("INSERT INTO products (name, price, categoryID) VALUES (@name, @price, @categoryID)", new { name = name, price = price, categoryID = categoryID });
 
         }//end createproduct method
+
+        //update product with UpdateProduct method       
+        public void UpdateProduct(int productID, string updatedName)
+        {
+            _conn.Execute("Update products SET Name = @updatedName WHERE productID = @productID;",
+                new { productID = productID, updatedName = updatedName });
+
+        }
+
+        //Delete product with this id from products table ,sales table, reviews table all at once
+        public void DeleteProduct(int productId)
+        {
+            //this will delete this product with this id in the products table
+            _conn.Execute("DELETE FROM products WHERE productID = @productID;",
+                new { productId = productId });
+
+            //this will delete this product with this id in the sales table
+            _conn.Execute("DELETE FROM sales WHERE productID = @productID;",
+                new { productId = productId });
+
+            //this will delete this product with this id in the reviews table
+            _conn.Execute("DELETE FROM reviews WHERE productID = @productID;",
+                new { productId = productId });
+
+        }
 
         //here taking our _conn object and using the Execute function to 
         //insert into the departments our (Name) column the values we want to insert

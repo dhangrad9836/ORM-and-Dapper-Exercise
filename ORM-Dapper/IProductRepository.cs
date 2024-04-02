@@ -9,5 +9,10 @@
         //create a stub method b/c interface
         void CreateProduct(string name, double price, int categoryID);
 
+        //create UpdateProduct method
+        void UpdateProduct(int productID, string updatedName);
+
+        void DeleteProduct(int productId);
+
     }
 }

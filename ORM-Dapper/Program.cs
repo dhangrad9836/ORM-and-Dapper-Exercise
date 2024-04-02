@@ -58,6 +58,22 @@ namespace ORM_Dapper
                 Console.WriteLine();
             }
 
+            //update the products
+            Console.WriteLine("What is the product ID you want to update? ");
+            var prodID = int.Parse(Console.ReadLine());
+
+            Console.WriteLine("What is the new product name? ");
+            var newName = Console.ReadLine();
+
+            productRepo.UpdateProduct(prodID, newName);
+
+            //delete the product
+            Console.WriteLine("What is the product ID you want to delete? ");
+            //reuse the prodID variable
+            prodID = int.Parse(Console.ReadLine());
+
+            productRepo.DeleteProduct(prodID);
+
         }
     }
 }
